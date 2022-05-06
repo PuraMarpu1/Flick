@@ -1,5 +1,6 @@
 const https = require("https");
 const fs = require("fs");
+const ytdl = require("ytdl-core");
 
 async function download(url, path) {
   https.get(url, (resp) => {
@@ -10,9 +11,21 @@ async function download(url, path) {
     writeStream.on("finish", () => {
       writeStream.close();
 
-      console.log("Done!!");
+      console.log("Done!!!");
     });
   });
 }
 
-module.exports = download;
+async function downloadYtube(url, path) {
+  const writeStream = fs.createWriteStream(path);
+
+  ytdl(url).pipe(writeStream);
+
+  writeStream.on("finish", () => {
+    writeStream.close();
+
+    console.log("Done!!!");
+  });
+}
+
+module.exports = { download: download, downloadYtube: downloadYtube };
