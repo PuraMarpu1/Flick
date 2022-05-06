@@ -1,5 +1,5 @@
 {
-  "name": "flick",
+  "name": "stflick",
   "version": "1.0.0",
   "description": "A node cli for downloading stuff",
   "main": "index.js",
